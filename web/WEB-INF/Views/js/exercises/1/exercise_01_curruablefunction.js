@@ -5,6 +5,7 @@ const item={
     "price":200
 
 }
+
 function applyCoupon(item){
     return function(discount){
         item.price = item.price - item.price * discount / 100;

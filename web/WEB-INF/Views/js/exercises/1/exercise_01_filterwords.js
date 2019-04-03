@@ -11,7 +11,6 @@ String.prototype.filterWords1 = function(input){
 console.log("This house is nice ! test ....".filterWords1(["house","nice","test"]));
 
 
-
 console.log("\nFilter Words using Promises and Async/Await");
 String.prototype.filterWords2 = function(input){
     let words =  this.split(" ");

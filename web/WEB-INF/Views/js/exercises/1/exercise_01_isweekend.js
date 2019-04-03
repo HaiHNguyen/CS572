@@ -5,6 +5,7 @@ function isWeekend(){
 
     const dayInWeek = todayDate.getDate();
     return WeekMap[dayInWeek];
+
 }
 
 console.log("Today is " + isWeekend());
