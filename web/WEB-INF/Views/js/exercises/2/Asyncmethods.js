@@ -7,12 +7,14 @@ Array.prototype.even=function(){
 
 }
 
+
 Array.prototype.odd=function(){
     setImmediate(() => {
         let arr = (this.filter(x => x%2 != 0));
         console.log(arr);
     })
 }
+
 
 
 console.log("Start");
