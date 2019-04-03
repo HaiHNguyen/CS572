@@ -1,0 +1,24 @@
+
+1. Explain why do we sometimes to use setImmediate instead of using setTimeout?
+Answer:It is faster because it does not use queue of function. It checks queue of I/O eventhandlers.
+If all I/O events in the current snapshot are processed, it executes the callback
+
+2. Explain the difference between process.nextTick and setImmediate?
+Answer:
+- Process.nextTick is not part of event loop. It adds the callback into nextTick queue
+- Node processes all callbacks in the nextTick queue after current operations completes and before
+the event loop continues.
+
+3.Name 10 Core modules that Node provides be default
+    - async_hooks
+    - assert
+    - buffer
+    - child_process
+    - console
+    - constants
+    - crypto
+    - cluster
+    - dns
+    - omain
+    - events
+    - http
