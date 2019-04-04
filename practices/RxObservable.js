@@ -1,7 +1,6 @@
 
-import {Observable} from '@reactivex/rxjs';
-const {Observable} = rxjs;
-const {from}=rxjs;
+const {Observable} = require('rxjs');
+// const {from} = rxjs;
 
 const hello$ =  Observable.create(observer =>{
     setTimeout( ()=>{
@@ -15,10 +14,13 @@ const hello$ =  Observable.create(observer =>{
         }, 1000);
     setTimeout( ()=>{
         observer.next("me");
-        observer.complete("GoodBy");
+        observer.complete();
         }, 1000);
      });
 
-hello$.subscribe(value =>{console.log(value)});
+hello$.subscribe(
+    value =>{console.log(value)},
+    error =>{console.log(error)},
+    ()=>console.log('Done'));
 
 

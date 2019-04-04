@@ -1,0 +1,13 @@
+
+
+1. ReadFileSync and ReadFile has the same performance
+    - Performance is slow
+    - Took a lot of memory
+
+2. Streaming
+     - Performance is better
+     - Still took a lot of memory based on highWaterMark
+
+3. Streaming and Pipe
+    - Performance is the best
+    - Took less memory

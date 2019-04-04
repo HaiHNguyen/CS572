@@ -5,6 +5,7 @@ class ExtendedEmitter  extends EventEmitter{
     constructor(){
         super();
     }
+
     change(){
         console.log('changed');
         this.emit('Change', 'this is change made');
