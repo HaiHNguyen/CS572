@@ -10,5 +10,5 @@ const  subcription = obs$.subscribe(
     function (x){console.log(x);},
     function (err){console.error(err);},
     function (){console.info('Done');}
-)
+);
 
