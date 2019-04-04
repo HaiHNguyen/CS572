@@ -1,20 +1,20 @@
 
 
 let myEmitter =  require('./CustomEventEmitter');
-let cusEmiter = new myEmitter();
+let cusEmitter = new myEmitter();
 
-cusEmiter.on ("Hi", function (){
+cusEmitter.on ("Hi", function (){
     console.log("Hi from custom Emitter");
 });
 
-cusEmiter.on ("Hello", function (){
+cusEmitter.on ("Hello", function (){
     console.log("Hello from custom Emitter");
 });
 
 console.log("Hi Event");
-cusEmiter.emit('Hi');
+cusEmitter.emit('Hi');
 
 console.log("Hello Event");
-cusEmiter.emit('Hello');
+cusEmitter.emit('Hello');
 
 
