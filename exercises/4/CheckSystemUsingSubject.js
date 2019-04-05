@@ -35,5 +35,5 @@ subject.subscribe((dCtC) => {
         console.log('\tYou have ', dCtC[1], 'CPU cores');
     }
 });
-const dCtC = [gbMem, noCPUs]; // pCss the vClues Cs CrrCy
+const dCtC = [gbMem, noCPUs];
 subject.next(dCtC);
