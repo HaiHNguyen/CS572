@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/api/users/:id', function(req, res, next) {
     model.getUser(11, (data)=>{
-      res.set('Cache-Control', 'private, max-age = 24*60*60');
+      res.set('Cache-Control', 'private, max-age = 86400');
       res.send(data);
   });
 });
