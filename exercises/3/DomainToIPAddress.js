@@ -36,8 +36,7 @@ function ipLookup3(domain) {
     async function asyncLookup(){
         try{
             const address = await dnsLookup(domain);
-            console.log('ipLookup3: ', address)
-
+            console.log('ipLookup3: ', address);
         }catch(error){
             console.log('Error:', error);
         }
