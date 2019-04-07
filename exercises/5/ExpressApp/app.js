@@ -18,11 +18,6 @@ app.set('trust proxy', true);
 app.set('case sensitive routing', true);
 app.set('strict routing', true);
 
-//Boot it up.
-app.listen( port, ()=>{
-  console.log('Express server is listening on port ', port);
-});
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -51,6 +46,11 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+//Boot it up.
+app.listen( port, ()=>{
+    console.log('Express server is listening on port ', port);
 });
 
 module.exports = app;
