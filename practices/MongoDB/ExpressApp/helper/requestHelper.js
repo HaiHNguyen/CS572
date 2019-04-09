@@ -4,14 +4,15 @@
 This helper Middleware validate and parse request in JSON to JS object
 */
 
-async function parseRequest(req){
+async function parseRequest(callBack){
 
     try{
         let jsonReq = JSON.stringify(req);
         let objReq = JSON.parse(jsonReq);
-        return objReq;
+        callBack(null, objReq);
+
     }catch (err){
-        return Promise.reject(err);
+        callBack(err, null);
     }
 }
 

@@ -12,6 +12,7 @@ var fs = require('fs');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var nextsRouter = require('./routes/nexts');
+var lectureRouter = require('./routes/lectureindex');
 
 var serverIndex = require('serve-index');
 var timeout = require('connect-timeout')
@@ -63,6 +64,7 @@ Routing
 */
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/lectures', lectureRouter);
 app.use('/nexts', nextsRouter);
 
 app.use('/browse', serverIndex(path.join(__dirname, '/node_modules'), {'icon': true}));

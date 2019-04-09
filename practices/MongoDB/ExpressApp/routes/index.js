@@ -4,6 +4,9 @@ var router = express.Router();
 const courseReg = require('../models/Grades');
 const reqHelper = require('../helper/requestHelper');
 
+const encryptor = require('../helper/EncryptData');
+const secret = require('../models/Secret');
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -15,6 +18,8 @@ router.get('/api/grades/:id', doGet);
 router.post('/api/grades/:id', doPost);
 router.put('/api/grades/:id', doPut);
 router.delete('/api/grades/:id', doDelete);
+
+router.get('/api/secret', doEncrypt);
 
 
 function doGet(req, res, next){
@@ -94,6 +99,25 @@ function doDelete(req, res, next){
         .catch(err =>{
             next(err);
         });
+}
+
+function doEncrypt(req, res, next){
+
+    secret.getSecret((err, doc) =>{
+        if(err){
+            next(err);
+        }else{
+            console.log('Doc: ', doc);
+            encryptor.decryptData(doc.key, doc.message, (err, data) =>{
+                if(err){
+                    next(err);
+                }else{
+                    console.log('Encrypted data: ', data);
+                    res.json(JSON.stringify(doc))
+                }
+            });
+        }
+    });
 }
 
 module.exports = router;

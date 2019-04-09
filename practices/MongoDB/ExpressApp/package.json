@@ -13,9 +13,12 @@
     "ejs": "~2.5.7",
     "express": "^4.16.4",
     "http-errors": "~1.6.2",
+    "mongodb": "^3.2.3",
     "morgan": "~1.9.0",
     "response-time": "^2.3.2",
     "serve-index": "^1.9.1",
+    "simple-encryption": "^1.0.1",
+    "simple-encryptor": "^2.0.0",
     "superagent": "^5.0.2"
   }
 }
