@@ -184,9 +184,9 @@ deleteLecture( query,  ( err, doc ) =>{
 });
 
 
-module.exports =  { 'getGrade':getLecture,
-                    'getGrades': getLectures,
-                    'createGrade': createLecture,
-                    'updateGrade': updateLecture,
-                    'deleteGrade': deleteLecture,
+module.exports =  { 'getLecture':getLecture,
+                    'getLectures': getLectures,
+                    'createLecture': createLecture,
+                    'updateLecture': updateLecture,
+                    'deleteLecture': deleteLecture,
                     'search': search};
