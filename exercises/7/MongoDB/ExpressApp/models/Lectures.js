@@ -5,25 +5,7 @@ const mongoDBClient = require('mongodb').MongoClient;
 //connection: mongodb+srv://mwa:<password>@cluster0-1btpu.mongodb.net/test?retryWrites=true
 const uri = "mongodb+srv://mwa:mwa@cluster0-1btpu.mongodb.net/homework07?retryWrites=true";
 
-var getLecture = async function( lecture, callBack ) {
-    try {
 
-        mongoDBClient.connect(uri, {'useNewUrlParser': true})
-            .then(async function(client) {
-                const db =  client.db('homework07');
-                const collection = db.collection('lectures');
-                const query = {'lecture': lecture};
-                collection.findOne(query, (err, doc) =>{
-                    callBack (err, doc)
-                });
-            })
-            .catch(err =>{
-                callBack (err, null)
-            })
-    }catch(err){
-        callBack (err, null)
-    }
-}
 
 var getLectures = async function( callBack ) {
     try {
@@ -34,6 +16,26 @@ var getLectures = async function( callBack ) {
                 const query = {};
                 collection.find(query).toArray((err, docArr) =>{
                     callBack (err, docArr)
+                });
+            })
+            .catch(err =>{
+                callBack (err, null)
+            })
+    }catch(err){
+        callBack (err, null)
+    }
+}
+
+var getLecture = async function( lecture, callBack ) {
+    try {
+
+        mongoDBClient.connect(uri, {'useNewUrlParser': true})
+            .then(async function(client) {
+                const db =  client.db('homework07');
+                const collection = db.collection('lectures');
+                const query = {'lecture': lecture};
+                collection.findOne(query, (err, doc) =>{
+                    callBack (err, doc)
                 });
             })
             .catch(err =>{
@@ -104,13 +106,15 @@ var deleteLecture = async function( query, callBack ) {
 
 var search = async function( exp, callBack ) {
     try {
+
         mongoDBClient.connect(uri, {'useNewUrlParser': true})
             .then(async function(client) {
-                const db =  client.db('homework01');
-                const collection = db.collection('data');
-                const projection = {'key': 1, 'message':1};
-                collection.findOne(exp, projection, (err, doc) =>{
-                    callBack (err, doc)
+                const db =  client.db('homework07');
+                const collection = db.collection('lectures');
+                const query = {'lecture': {$regex: 'Java'}}
+                 collection.find(query)
+                    .toArray((err, doc) =>{
+                         callBack (err, doc)
                 });
 
             })
@@ -122,20 +126,14 @@ var search = async function( exp, callBack ) {
     }
 }
 
-
-
-
-
-
-
-// getLecture( 'Express', (err, doc) =>{
+// let lecture = {'lecture': 'Express'};
+//
+// getLecture( lecture, (err, doc) =>{
 //     if(err){
 //         console.log('err: ', err);
 //     }else {
 //         console.log('Doc: ', doc);
 //     }
-//
-//
 // })
 
 // getLectures( (err, doc) =>{
@@ -158,14 +156,14 @@ var search = async function( exp, callBack ) {
     //     }
     // });
 
-let query = {
-    'lecture': 'Node JS - 1.1'
-};
-
-let newValues = {
-    'course': 'MWA',
-    'lecture': 'Node JS - 1.1'
-};
+// let query = {
+//     'lecture': 'Node JS - 1.1'
+// };
+//
+// let newValues = {
+//     'course': 'MWA',
+//     'lecture': 'Node JS - 1.1'
+// };
 
 // updateLecture( query, newValues,  ( err, doc ) =>{
 //     if(err){
@@ -175,13 +173,13 @@ let newValues = {
 //     }
 // });
 
-deleteLecture( query,  ( err, doc ) =>{
-    if(err){
-        console.log('err: ', err);
-    }else {
-        console.log('Doc: ', JSON.stringify(doc));
-    }
-});
+// deleteLecture( query,  ( err, doc ) =>{
+//     if(err){
+//         console.log('err: ', err);
+//     }else {
+//         console.log('Doc: ', JSON.stringify(doc));
+//     }
+// });
 
 
 module.exports =  { 'getLecture':getLecture,

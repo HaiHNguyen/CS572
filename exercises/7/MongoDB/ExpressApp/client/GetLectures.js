@@ -1,17 +1,17 @@
 
 const superagent = require('superagent');
 
-function getGrades (id) {
+function getLectures () {
     superagent
-        .get('http://localhost:8888/api/grades/')
-        .send({'id': id}) // sends a JSON post body
+        .get('http://localhost:8888/lectures')
+        .send({})
         .set('accept', 'json')
         .end((err, res) => {
             if(err !== null) {
                 console.log(err);
             }else{
-                console.log('Current Courses: \n', res.body);
+                console.log('Current Lectures: \n', res.body);
             }
         });
 }
-getGrades();
+getLectures();

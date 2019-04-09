@@ -17,4 +17,4 @@ async function encryptData(key, data, callBack){
         callBack(err, null);
     }
 }
-module.exports = {'decryptData': encryptData};
+module.exports = {'encryptData': encryptData};

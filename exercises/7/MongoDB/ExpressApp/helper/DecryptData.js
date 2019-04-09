@@ -5,7 +5,7 @@ This helper Middleware validate and parse request in JSON to JS object
 */
 var RSA = require('simple-encryption').RSA;
 
-async function encryptData(key, data, callBack){
+async function decryptData(key, data, callBack){
 
     try{
         console.log("Key: ", key);
@@ -17,4 +17,4 @@ async function encryptData(key, data, callBack){
         callBack(err, null);
     }
 }
-module.exports = {'decryptData': encryptData};
+module.exports = {'decryptData': decryptData};
