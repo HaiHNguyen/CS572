@@ -1,0 +1,96 @@
+
+import 
+
+mongoimport -d mwa -c cities --file "E:\MUM\Courses\MWA\Execises\practices\MongoDB\cities.json"
+
+1.
+db.cities.aggregate([
+    {$match:{
+            state:'IA'
+        }
+    },
+
+    {$group:{
+             _id:{'city': '$city', 'state': '$state'},
+             'zip-codes': {$addToSet: '$_id'}
+         }
+    },
+    {$project:{
+            _id:0,
+            'City': '$_id.city',
+            'state': '$_id.state',
+            'zip-codes': 1,
+        }
+    },
+])
+
+
+2.
+db.cities.aggregate([
+     {$match:{
+         pop:{$lt: 5000}
+         }
+     },
+
+    {$project:{
+
+            _id:0,
+            'pop': 1,
+            'zip_code': '$_id'
+        }
+    },
+
+    {$sort: {
+            'zip-code': 1
+        }
+    }
+])
+
+
+3.
+db.cities.aggregate([
+    {$group:{
+
+        _id:{'city': '$city', 'state': '$state'},
+
+        'count': {$sum: 1},
+        }
+    },
+
+    {$match:{
+            'count': {$gt: 1}
+        }
+    },
+    {$project:{
+
+            '_id': 0,
+            'state': '$_id.state',
+            'city': '$_id.city',
+            'pop':1
+        }
+    },
+   {$sort: {
+              '_id.city':1, '_id.state':1
+           }
+       }
+
+  ])
+
+  4.
+  db.cities.aggregate([
+      {$sort: {
+              'pop': 1
+          }
+      },
+     {$project:{
+
+            '_id': 0,
+            'state': 1,
+            'city': 1,
+            'pop':1
+        }
+      },
+      {$limit: 1
+      }
+
+  ])
