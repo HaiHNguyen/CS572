@@ -1,28 +1,41 @@
 
+
+{ "_id" : "01001", "city" : "AGAWAM", "loc" : [ -72.622739, 42.070206 ], "pop" : 15338, "state" : "MA" }
+
+
 import 
 
 mongoimport -d mwa -c cities --file "E:\MUM\Courses\MWA\Execises\practices\MongoDB\cities.json"
 
 1.
+
 db.cities.aggregate([
     {$match:{
-            state:'IA'
+        state:'IA'
         }
     },
 
     {$group:{
              _id:{'city': '$city', 'state': '$state'},
+             'population': {$sum: '$pop'},
              'zip-codes': {$addToSet: '$_id'}
          }
     },
+
     {$project:{
             _id:0,
-            'City': '$_id.city',
-            'state': '$_id.state',
+            'city':'$_id',
+            'population': 1,
             'zip-codes': 1,
         }
     },
+
+    {$sort: {
+            'population': 1
+        }
+    }
 ])
+
 
 
 2.
@@ -46,7 +59,6 @@ db.cities.aggregate([
     }
 ])
 
-
 3.
 db.cities.aggregate([
     {$group:{
@@ -61,21 +73,13 @@ db.cities.aggregate([
             'count': {$gt: 1}
         }
     },
-    {$project:{
 
-            '_id': 0,
-            'state': '$_id.state',
-            'city': '$_id.city',
-            'pop':1
-        }
-    },
    {$sort: {
               '_id.city':1, '_id.state':1
            }
        }
 
   ])
-
 
   4.
   db.cities.aggregate([

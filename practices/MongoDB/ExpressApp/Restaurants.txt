@@ -1,0 +1,5 @@
+
+#1.
+db.restaurants.find({}).toArray();
+
+#2. db.restaurants.find({}, {restaurant_id:1, })
