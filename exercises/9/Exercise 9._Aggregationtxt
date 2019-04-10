@@ -1,6 +1,4 @@
 
-import 
-
 mongoimport -d mwa -c cities --file "E:\MUM\Courses\MWA\Execises\practices\MongoDB\cities.json"
 
 1.
@@ -75,7 +73,6 @@ db.cities.aggregate([
        }
 
   ])
-
 
   4.
   db.cities.aggregate([
