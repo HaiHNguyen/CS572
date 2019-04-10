@@ -15,6 +15,7 @@ var getLectures = async function( callBack ) {
                 const collection = db.collection('lectures');
                 const query = {};
                 collection.find(query).toArray((err, docArr) =>{
+                    client.close();
                     callBack (err, docArr)
                 });
             })
@@ -35,6 +36,7 @@ var getLecture = async function( lecture, callBack ) {
                 const collection = db.collection('lectures');
                 const query = {'lecture': lecture};
                 collection.findOne(query, (err, doc) =>{
+                    client.close();
                     callBack (err, doc)
                 });
             })
@@ -54,6 +56,7 @@ var createLecture = async function( lecture, callBack ) {
                 const collection = db.collection('lectures');
                 const query = {};
                 collection.insertOne(lecture, (err, res) =>{
+                    client.close();
                     callBack (err, res)
                 });
             })
@@ -72,6 +75,7 @@ var updateLecture = async function( query, newValues, callBack ) {
                 const collection = db.collection('lectures');
                 const updateQuery = {$set: newValues};
                 collection.updateOne(query, updateQuery, (err, res) =>{
+                    client.close();
                     callBack (err, res)
                 });
             })
@@ -90,6 +94,7 @@ var deleteLecture = async function( query, callBack ) {
                 const db =  client.db('homework07');
                 const collection = db.collection('lectures');
                 collection.deleteOne(query, (err, res) =>{
+                    client.close();
                     callBack (err, res)
                 });
             })
@@ -114,6 +119,7 @@ var search = async function( exp, callBack ) {
                 const query = {'lecture': {$regex: 'Java'}}
                  collection.find(query)
                     .toArray((err, doc) =>{
+                        client.close();
                          callBack (err, doc)
                 });
 
