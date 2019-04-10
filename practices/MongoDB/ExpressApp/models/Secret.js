@@ -23,11 +23,11 @@ var getSecret = async function( callBack ) {
     }
 }
 
- getSecret( (err, doc) =>{
-    console.log('Doc: ', doc);
-
-    console.log('err: ', err);
-})
+//  getSecret( (err, doc) =>{
+//     console.log('Doc: ', doc);
+//
+//     console.log('err: ', err);
+// })
 
 
 module.exports =  { 'getSecret':getSecret};

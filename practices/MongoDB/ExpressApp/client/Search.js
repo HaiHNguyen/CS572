@@ -1,19 +1,19 @@
 
 const superagent = require('superagent');
 
-function createGrade (id) {
-    let request =  {'id':'3', 'name': 'Hai Nguyen','course': 'SE SE', 'professor': 'Rene de Jong', 'grade':'93' }
+function searchLectures () {
+    let request =  {'keyword':'Java'};
     console.log('Request Sent: \n', request);
     superagent
-        .put('http://localhost:8888/api/grades/:id')
-        .send(request) // sends a JSON post body
+        .get('http://localhost:8888/lectures/search/:q')
+        .query(request)
         .set('accept', 'json')
         .end((err, res) => {
             if(err !== null) {
                 console.log(err);
             }else{
-                console.log('Current Courses: \n', res.body);
+                console.log('Lectures found: \n', res.body);
             }
         });
 }
-createGrade();
+searchLectures();

@@ -1,17 +1,21 @@
 
 const superagent = require('superagent');
 
-function getGrade () {
+function encrypt () {
+
+
+    console.log('do encrypt');
     superagent
-        .get('http://localhost:8888/api/secret')
+        .get('http://localhost:8888/secret')
+        .send({})
         .set('accept', 'json')
         .end((err, res) => {
             if(err !== null) {
                 console.log(err);
             }else{
                 console.log('Message received: \n', res.body);
-                console.log(res.headers);
+
             }
         });
 }
-getGrade();
+encrypt();
