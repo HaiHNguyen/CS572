@@ -75,20 +75,28 @@ db.cities.aggregate([
   ])
 
   4.
-  db.cities.aggregate([
-      {$sort: {
-              'pop': 1
-          }
-      },
-     {$project:{
+      db.cities.aggregate([
+           {$group: {
+                   _id:{'state': '$state', 'city': '$city' },
+                   'population': {$sum: '$pop'}
+               }
+           },
+           {$sort: {
+                 'population': 1
+             }
+           },
 
-            '_id': 0,
-            'state': 1,
-            'city': 1,
-            'pop':1
-        }
-      },
-      {$limit: 1
-      }
+           {$group: {
+                   _id:'$_id.state',
+                   'leastState': {$first: '$_id.state'},
+                   'leastCity': {$first: '$_id.city'},
+                   'leastPopulation': {$first: "$population"}
 
-  ])
+               }
+
+           },
+           {$sort: {
+                   'leastPopulation': 1
+               }
+             }
+       ])
