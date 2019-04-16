@@ -35,7 +35,7 @@ function processGetRequest(reqResp){
         const fileName = queryString['file'];
         if(fileName != undefined) {
             const readingFile = fork('ReadFile.js');
-            //send fine name to child process
+            //send fine _name to child process
             readingFile.send(fileName);
 
             //Listen to message from child process
