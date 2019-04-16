@@ -6,9 +6,9 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
     <div class="central">
         <span>
             <button (click)="decrease()">-</button>
-            <span>{{_counter}}</span>
+            <span>{{_counterValue}}</span>
             <button (click)="increase()">+</button> 
-            Component Counter Value: {{_counter}}
+            Component Counter Value: {{_counterValue}}
         </span>
     </div>
   `,
@@ -16,7 +16,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 })
 export class AppCounterComponent implements OnInit {
-  private _counter: number;
+  private _counterValue: number;
   constructor() {
 
   }
@@ -25,28 +25,28 @@ export class AppCounterComponent implements OnInit {
   }
 
   @Input()
-  set counter (value){
-    this._counter = value;
+  set counterValue (value){
+    this._counterValue = value;
 
   }
 
-  get counter (){
-    return this._counter;
+  get counterValue (){
+    return this._counterValue;
   }
 
 
   private decrease (){
-    this._counter -= 1;
-    this.counterChanged.emit(this._counter.toString());
+    this._counterValue -= 1;
+    this.counterChange.emit(this._counterValue);
 
   }
 
   private increase(){
-    this._counter +=1;
-    this.counterChanged.emit(this._counter.toString());
+    this._counterValue +=1;
+    this.counterChange.emit(this._counterValue);
   }
 
   @Output ()
-  counterChanged = new EventEmitter();
+  counterChange = new EventEmitter();
 
 }

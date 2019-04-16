@@ -3,41 +3,41 @@ import {Component, Input, OnInit} from '@angular/core';
 @Component({
   selector: 'app-root',
   template:`
-   
+
     <div class="central">
       <app-header></app-header>
-      Component Counter Value received: {{currentCounter}}
+      Component Counter Value received: {{currentCounterValue}}
       <hr>
-      <app-counter [(counter)]='_startCounter' (counterChanged) = 'onCounterChanged($event)'> </app-counter>
+      <app-counter [(counterValue)]='_startCounter' (counterChange)="onCounterChanged($event)"></app-counter>
       <app-footer></app-footer>
     </div>
-    
+
   `,
   styles: [`div.central {font-size: 16px; font-weight: bold; color: black; text-align: center}`]
 
 })
 export class AppComponent implements OnInit {
   title: String = 'Counter';
-  private _currentCounter: number;
+  private _currentCounterValue: number;
   private _startCounter: number;
 
   @Input()
-  set currentCounter(value: number) {
-    this._currentCounter = value;
+  set currentCounterValue(value: number) {
+    this._currentCounterValue = value;
   }
 
-  get currentCounter() {
-    return this._currentCounter;
+  get currentCounterValue() {
+    return this._currentCounterValue;
   }
 
 
 
   ngOnInit() {
     this._startCounter = 5;
-    this.currentCounter =  this._startCounter;
+    this.currentCounterValue =  this._startCounter;
   }
 
   onCounterChanged( counter: number): void{
-    this.currentCounter = counter;
+    this.currentCounterValue = counter;
   }
 }
