@@ -26,6 +26,7 @@ import { Component } from '@angular/core';
       
     </div>
     
+    
   `,
   styles: ['div.main {text-align: center}']
 
